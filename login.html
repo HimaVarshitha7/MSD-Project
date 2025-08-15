@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommUnityCare - Login</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="Community Care Logo Design.png" alt="CommUnityCare Logo" class="logo-img">
+      <h1 class="logo">CommUnityCare</h1>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="complaint.html">Complaint</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="login-section">
+    <div class="login-container">
+      <h2>Login to Your Account</h2>
+      <form id="loginForm" action="dashboard.html" method="POST" class="login-form">
+        <div class="input-group">
+          <label for="role">Select Role</label>
+          <select id="role" name="role" required>
+            <option value="">-- Choose Role --</option>
+            <option value="resident">Resident</option>
+            <option value="worker">Maintenance Worker</option>
+            <option value="security">Security/Staff</option>
+            <option value="admin">Apartment Admin</option>
+            <option value="superadmin">Super Admin</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="community">Apartment/Community Name</label>
+          <input type="text" id="community" name="community" required placeholder="Enter your apartment name">
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email or Phone</label>
+          <input type="text" id="email" name="email" required placeholder="Enter email or phone">
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <div style="position: relative;">
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            <i id="togglePassword" class="fa fa-eye" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">Login</button>
+
+        <p class="signup-link">
+          Don’t have an account? <a href="signup.html">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>CommUnityCare</h2>
+        <p>Helping communities resolve complaints faster and smarter. Seamless tools for residents and property managers.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="complaint.html">Complaint</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>Contact Us</h3>
+        <p>Email: support@communitycare.com</p>
+        <p>Phone: +91-9876543210</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 CommUnityCare. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("password");
+    togglePassword.addEventListener("click", () => {
+      const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+      passwordField.setAttribute("type", type);
+      togglePassword.classList.toggle("fa-eye-slash");
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const role = document.getElementById("role").value.trim();
+      const community = document.getElementById("community").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!role || !community || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!emailRegex.test(email) && !phoneRegex.test(email)) {
+        alert("Please enter a valid email or 10-digit phone number.");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+      }
+
+      alert("Login successful as " + role.charAt(0).toUpperCase() + role.slice(1));
+      this.submit();
+    });
+  </script>
+</body>
+</html>

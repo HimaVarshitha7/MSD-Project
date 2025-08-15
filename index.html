@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Complaint & Maintenance Tracker</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="Community Care Logo Design.png" alt="CommUnityCare Logo" class="logo-img">
+      <h1 class="logo">CommUnityCare</h1>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="complaint.html">Complaint</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <h2 id="welcome-text" class="typing"></h2>
+    <p>A platform built for modern apartments, helping you easily register, track, and resolve maintenance issues in your community.</p>
+    <h2>About Our Platform</h2>
+    <p>Our system enables residents to register complaints from anywhere, get notified on task progress, and give feedback — even through voice calls. Property managers and maintenance staff get streamlined dashboards and alerts, improving efficiency and satisfaction.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>CommUnityCare</h2>
+        <p>Helping communities resolve complaints faster and smarter. Seamless tools for residents and property managers.</p>
+      </div>
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="complaint.html">Complaint</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>Contact Us</h3>
+        <p>Email: support@communitycare.com</p>
+        <p>Phone: +91-9876543210</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CommUnityCare. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      document.body.classList.add("loaded");
+
+      const text = "Welcome to the Smart Complaint & Maintenance Tracker";
+      const welcomeEl = document.getElementById("welcome-text");
+      let index = 0;
+      function typeWriter() {
+        if (index < text.length) {
+          welcomeEl.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+      typeWriter();
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9fafb;
+}
+
+.complaint-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.complaint-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  color: #1e88e5;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #1e88e5;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #1565c0;
+}
+
+.static-progress {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 8px;
+  margin: 15px 0;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #43a047;
+  width: 0%;
+  height: 100%;
+}

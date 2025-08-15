@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommUnityCare - Services</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="services.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="Community Care Logo Design.png" alt="CommUnityCare Logo" class="logo-img">
+      <h1 class="logo">CommUnityCare</h1>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="complaint.html">Complaint</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="services-section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Simplifying community living with smart solutions</p>
+
+      <!-- Search box -->
+      <div class="search-box">
+        <input type="text" id="serviceSearch" placeholder="Search services...">
+      </div>
+      <br>
+      <div class="services-grid" id="servicesGrid">
+        <div class="service-card" data-service="complaint management">
+          <i class="fas fa-tools service-icon"></i>
+          <h3>Complaint Management</h3>
+          <p>Register, track, and resolve complaints with real-time updates and auto-assignment.</p>
+        </div>
+
+        <div class="service-card" data-service="maintenance scheduling">
+          <i class="fas fa-broom service-icon"></i>
+          <h3>Maintenance Scheduling</h3>
+          <p>Plan preventive maintenance to keep your community facilities in top condition.</p>
+        </div>
+
+        <div class="service-card" data-service="voice call alerts">
+          <i class="fas fa-phone-volume service-icon"></i>
+          <h3>Voice Call Alerts</h3>
+          <p>Send automated voice updates for workers and residents who prefer calls over messages.</p>
+        </div>
+
+        <div class="service-card" data-service="analytics dashboard">
+          <i class="fas fa-chart-line service-icon"></i>
+          <h3>Analytics Dashboard</h3>
+          <p>Gain insights into complaints, staff performance, and service timelines with reports.</p>
+        </div>
+
+        <div class="service-card" data-service="role based access">
+          <i class="fas fa-lock service-icon"></i>
+          <h3>Role-Based Access</h3>
+          <p>Secure and simple login tailored for residents, workers, and administrators.</p>
+        </div>
+
+        <div class="service-card" data-service="qr code access">
+          <i class="fas fa-qrcode service-icon"></i>
+          <h3>QR Code Access</h3>
+          <p>Scan QR codes placed in your building to instantly lodge complaints without hassle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>CommUnityCare</h2>
+        <p>Helping communities resolve complaints faster and smarter. Seamless tools for residents and property managers.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="complaint.html">Complaint</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>Contact Us</h3>
+        <p>Email: support@communitycare.com</p>
+        <p>Phone: +91-9876543210</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 CommUnityCare. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("serviceSearch").addEventListener("input", function () {
+      let query = this.value.toLowerCase();
+      let services = document.querySelectorAll(".service-card");
+      services.forEach(card => {
+        let name = card.dataset.service.toLowerCase();
+        if (name.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+
+    document.querySelectorAll(".service-card").forEach(card => {
+      card.addEventListener("click", function () {
+        alert(`You clicked on "${this.querySelector('h3').innerText}"`);
+      });
+    });
+
+    document.querySelectorAll('.footer-section.links a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

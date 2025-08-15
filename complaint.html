@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File a Complaint - CommUnityCare</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="complaint.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <img src="Community Care Logo Design.png" alt="CommUnityCare Logo" class="logo-img">
+    <h1 class="logo">CommUnityCare</h1>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="complaint.html" class="active">Complaint</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="complaint-section">
+  <div class="complaint-container">
+    <h2>File a Complaint</h2>
+    <form id="complaint-form" action="thankyou.html" method="get">
+      <div class="input-group">
+        <label for="flat">Flat Number</label>
+        <input type="text" id="flat" name="flat" placeholder="Enter your flat number" required>
+      </div>
+
+      <div class="input-group">
+        <label for="service-type">Complaint Type</label>
+        <select id="service-type" name="service" required>
+          <option value="">-- Select Complaint Type --</option>
+          <option value="plumbing">Plumbing Work</option>
+          <option value="electrical">Electrical Work</option>
+          <option value="carpentry">Carpentry Work</option>
+          <option value="cleaning">Cleaning</option>
+          <option value="security">Security Issue</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="input-group" id="other-complaint-group">
+        <label for="other-complaint">If Other, Specify</label>
+        <input type="text" id="other-complaint" name="other_complaint" placeholder="Enter custom complaint type">
+      </div>
+
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Describe the issue..." required></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="problem-image">Upload Image (Optional)</label>
+        <input type="file" id="problem-image" name="problem_image" accept="image/*">
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Complaint</button>
+    </form>
+
+    <div class="static-progress">
+      <h3>Worker Assignment</h3>
+      <p>Worker will be assigned after submission and progress will be updated by admin.</p>
+      <div class="progress-bar" style="background: #ddd; width: 100%; height: 20px; border-radius: 5px;">
+        <div class="progress-fill" style="width: 0%; height: 100%; background: green; border-radius: 5px;"></div>
+      </div>
+      <p>0% Completed</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h2>CommUnityCare</h2>
+      <p>Helping communities resolve complaints faster and smarter.</p>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="complaint.html">Complaint</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>Email: support@communitycare.com</p>
+      <p>Phone: +91-9876543210</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 CommUnityCare. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const complaintType = document.getElementById("service-type");
+    const otherComplaintGroup = document.getElementById("other-complaint-group");
+    const otherComplaintField = document.getElementById("other-complaint");
+    const imageInput = document.getElementById("problem-image");
+    const form = document.getElementById("complaint-form");
+    const progressFill = document.querySelector(".progress-fill");
+    const progressText = document.querySelector(".static-progress p:last-child");
+
+    otherComplaintGroup.style.display = "none";
+
+    complaintType.addEventListener("change", () => {
+      if (complaintType.value === "other") {
+        otherComplaintGroup.style.display = "block";
+        otherComplaintField.required = true;
+      } else {
+        otherComplaintGroup.style.display = "none";
+        otherComplaintField.required = false;
+        otherComplaintField.value = "";
+      }
+    });
+
+    imageInput.addEventListener("change", () => {
+      const file = imageInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          let preview = document.getElementById("image-preview");
+          if (!preview) {
+            preview = document.createElement("img");
+            preview.id = "image-preview";
+            preview.style.maxWidth = "200px";
+            preview.style.marginTop = "10px";
+            imageInput.parentElement.appendChild(preview);
+          }
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        if (progress < 100) {
+          progress += 10;
+          progressFill.style.width = progress + "%";
+          progressText.textContent = `${progress}% Completed`;
+        } else {
+          clearInterval(interval);
+          alert("Complaint submitted successfully!");
+          form.reset();
+          progressFill.style.width = "0%";
+          progressText.textContent = "0% Completed";
+        }
+      }, 200);
+    });
+  });
+</script>
+
+</body>
+</html>

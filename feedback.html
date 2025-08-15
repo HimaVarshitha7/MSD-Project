@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - CommUnityCare</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <img src="Community Care Logo Design.png" alt="CommUnityCare Logo" class="logo-img">
+    <h1 class="logo">CommUnityCare</h1>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="complaint.html">Complaint</a></li>
+      <li><a href="feedback.html" class="active">Feedback</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="feedback-section">
+  <div class="feedback-container">
+    <h2>Share Your Feedback</h2>
+    <form id="feedback-form">
+      <div class="input-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="flat">Flat Number</label>
+        <input type="text" id="flat" name="flat" placeholder="Enter your flat number" required>
+      </div>
+
+      <div class="input-group">
+        <label for="block">Block</label>
+        <input type="text" id="block" name="block" placeholder="Enter your block" required>
+      </div>
+
+      <div class="input-group">
+        <label for="rating">Rate Our Service</label>
+        <select id="rating" name="rating" required>
+          <option value="">-- Select Rating --</option>
+          <option value="excellent">Excellent</option>
+          <option value="good">Good</option>
+          <option value="average">Average</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="message">Your Feedback</label>
+        <textarea id="message" name="message" placeholder="Write your feedback..." maxlength="250" required></textarea>
+        <div class="char-count" id="char-count">0 / 250</div>
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Feedback</button>
+      
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h2>CommUnityCare</h2>
+      <p>Helping communities resolve complaints faster and smarter.</p>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="complaint.html">Complaint</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>Email: support@communitycare.com</p>
+      <p>Phone: +91-9876543210</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 CommUnityCare. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating");
+    const message = document.getElementById("message");
+    const charCount = document.getElementById("char-count");
+    const form = document.getElementById("feedback-form");
+    const successMsg = document.getElementById("success-msg");
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        const value = star.getAttribute("data-value");
+        ratingInput.value = value;
+        stars.forEach(s => {
+          s.classList.toggle("active", s.getAttribute("data-value") <= value);
+        });
+      });
+    });
+
+    message.addEventListener("input", () => {
+      charCount.textContent = `${message.value.length} / 250`;
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity() || !ratingInput.value) {
+        alert("Please fill all required fields and select a rating.");
+        return;
+      }
+
+      successMsg.style.display = "block";
+      form.reset();
+      charCount.textContent = "0 / 250";
+      stars.forEach(s => s.classList.remove("active"));
+      ratingInput.value = "";
+    });
+  });
+</script>
+
+</body>
+</html>
